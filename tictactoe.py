@@ -45,7 +45,7 @@ def actions(board):
         for col in range(len(board[row])):
             if board[row][col] == EMPTY:
                 # agregar direccion del elemento a la lista
-                pass
+                actions.add((row, col)) 
     return actions
 
 
