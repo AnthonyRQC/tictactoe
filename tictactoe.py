@@ -69,12 +69,12 @@ def winner(board):
     """
     # for lines
     for i in range(len(board)):
-        if all(board[i][j] == board[i][0] and board[i][j] != EMPTY for j in range(board)):
+        if all(board[i][j] == board[i][0] and board[i][j] != EMPTY for j in range(len(board))):
             return board[i][0]
 
     # for columns
     for j in range(len(board)):
-        if all(board[i][j] == board[0][j] and board[i][j] != EMPTY for i in range(board)):
+        if all(board[i][j] == board[0][j] and board[i][j] != EMPTY for i in range(len(board))):
             return board[0][j]
 
     # x lines
@@ -92,10 +92,11 @@ def terminal(board):
     Returns True if game is over, False otherwise.
     """
     there_empty = False
-    for row in len(range(board)):
-        if EMPTY in row:
-            there_empty = True
-            break
+    for row in board:
+        for cell in row:
+            if cell == EMPTY: 
+                there_empty = True
+                break
 
     if winner(board) or not there_empty:
         return True
@@ -117,10 +118,12 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
+    if terminal(board):
+        return None
     best_sore = -math.inf
     best_move = []
     for action in actions(board):
-        if max_value(action) > best_sore:
+        if max_value(result(board, action)) > best_sore:
             best_move = action
     return best_move
 

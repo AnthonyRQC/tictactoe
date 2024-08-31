@@ -29,6 +29,27 @@ print(f"after put{board_o_turn2}")
 # board_o_turn_bad = t.result(board_o_turn, (0, 0))
 # print(f"before put{board_o_turn_bad}")
 
+o_winner = [['X', 'X', 'O'], 
+            [None, 'O', 'X'], 
+            ['O', None, None]]
+
+x_winner = [['X', 'X', 'X'], 
+            [None, 'O', None], 
+            [None, 'O', None]]
+draw = [['X', 'O', 'X'], 
+        ['X', 'O', 'X'], 
+        ['O', 'X', 'O']]
+
+print(f"winner o: {t.winner(o_winner)}")
+print(f"winner x: {t.winner(x_winner)}")
+print(f"draw: {t.winner(draw)}")
+
+#### test terminal
+
+print(f"should true {t.terminal(draw)}")
+print(f"should true {t.terminal(o_winner)}")
+print(f"should false {t.terminal(board_o_turn2)}")
+
 
 
 
