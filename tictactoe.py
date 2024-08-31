@@ -120,12 +120,17 @@ def minimax(board):
     """
     if terminal(board):
         return None
-    best_sore = -math.inf
-    best_move = []
-    for action in actions(board):
-        if max_value(result(board, action)) > best_sore:
-            best_move = action
-    return best_move
+    
+    if player(board) == X:
+        for action in actions(board):
+            if max_value(board) == min_value(result(board, action)):
+                return action
+    
+    if player(board) == O:
+        for action in actions(board):
+            if min_value(board) == max_value(result(board, action)):
+                return action
+
 
 def max_value(state):
     v = -math.inf
